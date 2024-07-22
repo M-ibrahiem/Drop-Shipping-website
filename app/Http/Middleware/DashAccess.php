@@ -16,10 +16,16 @@ class DashAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role == 'user'){
-            abort(403);
-        }else{
-            return $next($request);
+
+
+        return $next($request);
+        if(Auth::check()){
+
+            if (Auth::user()->hasRole ('user')) {
+                return $next($request);
+            } else {
+                abort(403);
+            }
         }
     }
 }

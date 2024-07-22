@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -18,16 +19,29 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
 
         Route::get('/', function () {
             return view('front.index');
-        });
+        })->name('main');
 
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->middleware(['auth', 'verified','dashaccess'])->name('dashboard');
+
+        Route::middleware(['auth', 'verified', 'dashaccess'])->as('dashboard.')->prefix('dashboard')->group(function () {
+            Route::get('/', function () {
+                return view('dash.index');
+            })->name('main');
+
+            Route::resources([
+                'users' => UserController::class,
+                // 'categories' => CategoryController::class,
+
+            ]);
+        });
+        // Route::get('/dashboard', function () {
+        //     return view('dashboard');
+        // })->middleware(['auth', 'verified', 'dashaccess'])->name('dashboard');
 
         Route::middleware('auth')->group(function () {
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,8 +49,6 @@ Route::group(
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         });
 
-        require __DIR__.'/auth.php';
-
-
-    });
-
+        require __DIR__ . '/auth.php';
+    }
+);

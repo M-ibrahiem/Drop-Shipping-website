@@ -78,7 +78,7 @@
                             </form>
                             @if (Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin')
                             {{-- @if (Auth::user()->hasRole(['super_admin', 'admin'])) --}}
-                                <a href="{{ route('dashboard') }}" class="button">Dashboard</a>
+                                <a href="{{ route('dashboard.main') }}" class="button">Dashboard</a>
                             @endif
                         @else
                             <a href="{{ route('login') }}">{{ __('Login') }} <i
