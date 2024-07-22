@@ -7,7 +7,7 @@
     <!-- fil css -->
     <title>Topoco</title>
     <link rel="stylesheet" href="{{ asset('front/./css/styl.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/./css/login_regs.css') }}">
+            <link rel="stylesheet" href="{{ asset('front/./css/login_regs.css') }}">
 
     <!-- font awesom -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -17,7 +17,7 @@
 
 </head>
 
-<body">
+<body class="ltr" dir="{{ LaravelLocalization::getCurrentLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 
     <header>
         <div class="container top-nav">
@@ -35,6 +35,20 @@
                     <p>{{ __('MY Cart') }}</p>
                     <p class="price_cart_head">$0</p>
                 </div>
+
+
+                <!-- Language Icons -->
+                <div class="language-switcher-">
+                    @if (LaravelLocalization::getCurrentLocale() == 'en')
+                        <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
+                            <i class="fa-solid fa-language"></i> AR
+                        </a>
+                    @else
+                        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+                            <i class="fa-solid fa-language"></i> EN
+                        </a>
+                </div>
+                @endif
             </div>
         </div>
         </div>
@@ -62,9 +76,9 @@
                                     {{ __('Log Out') }} <i class="fa-solid fa-user-minus"></i>
                                 </button>
                             </form>
-                            {{-- @if (Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin') --}}
-                            @if (Auth::user()->hasRole(['super_admin', 'admin']))
-                                <a href="{{ route('dashboard.main') }}" class="button">Dashboard</a>
+                            @if (Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin')
+                            {{-- @if (Auth::user()->hasRole(['super_admin', 'admin'])) --}}
+                                <a href="{{ route('dashboard') }}" class="button">Dashboard</a>
                             @endif
                         @else
                             <a href="{{ route('login') }}">{{ __('Login') }} <i
@@ -102,3 +116,14 @@
 
 
 
+    {{-- <div class="cart">
+        <ul>
+            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <li>
+                    <a rel="alternate" hreflang="{{ $localeCode }}"
+                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $properties['native'] }}
+                    </a>
+                </li>
+            @endforeach
+        </ul> --}}
