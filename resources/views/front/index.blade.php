@@ -6,17 +6,17 @@
   <section class="slider">
     <div class="container">
       <div class="side_bar">
-        <h2><i class="fa-solid fa-bars"></i>SHOP by derparment</h2>
+        <h2><i class="fa-solid fa-bars"></i>{{ __('SHOP by derparment') }}</h2>
 
-        <a href="#">All categories</a>
-        <a href="#">Best seller products</a>
-        <a href="#">New Arrivals</a>
-        <a href="#">Top 10 offers</a>
-        <a href="#">Phones & Tablet</a>
-        <a href="#">Elestronics & Digita</a>
-        <a href="#">Fashion & Clothings</a>
-        <a href="#">Jawelry & Watches</a>
-        <a href="#">TV & Audio</a>
+        <a href="#">{{ __('All categories') }}</a>
+        <a href="#">{{ __('Best seller products') }}</a>
+        <a href="#">{{ __('New Arrivals') }}</a>
+        <a href="#">{{ __('Top 10 offers') }}</a>
+        <a href="#">{{ __('Phones & Tablet') }}</a>
+        <a href="#">{{ __('Elestronics & Digital') }}</a>
+        <a href="#">{{ __('Fashion & Clothings') }}</a>
+        <a href="#">{{ __('Jawelry & Watches') }}</a>
+        <a href="#">{{ __('TV & Audio') }}</a>
       </div>
 
       <!-- Swiper -->
@@ -45,37 +45,37 @@
       <div class="feature_item">
         <img src="{{ asset('front/img/features1.png') }}" alt="">
         <div class="text">
-          <h4>Free Shipping</h4>
-          <p>Free Shipping on all order</p>
+          <h4>{{ __('Free Shipping') }}</h4>
+          <p>{{ __('Free Shipping on all order') }}</p>
         </div>
       </div>
 
       <div class="feature_item">
         <img src="{{ asset('front/img/features2.png') }}" alt="">
         <div class="text">
-          <h4>Free Shipping</h4>
-          <p>Free Shipping on all order</p>
+            <h4>{{ __('Free Shipping') }}</h4>
+            <p>{{ __('Free Shipping on all order') }}</p>
         </div>
       </div>
       <div class="feature_item">
         <img src="{{ asset('front/img/features3.png') }}" alt="">
         <div class="text">
-          <h4>Free Shipping</h4>
-          <p>Free Shipping on all order</p>
+            <h4>{{ __('Free Shipping') }}</h4>
+            <p>{{ __('Free Shipping on all order') }}</p>
         </div>
       </div>
       <div class="feature_item">
         <img src="{{ asset('front/img/features4.png') }}" alt="">
         <div class="text">
-          <h4>Free Shipping</h4>
-          <p>Free Shipping on all order</p>
+            <h4>{{ __('Free Shipping') }}</h4>
+            <p>{{ __('Free Shipping on all order') }}</p>
         </div>
       </div>
       <div class="feature_item">
         <img src="{{ asset('front/img/features5.png') }}" alt="">
         <div class="text">
-          <h4>Free Shipping</h4>
-          <p>Free Shipping on all order</p>
+            <h4>{{ __('Free Shipping') }}</h4>
+            <p>{{ __('Free Shipping on all order') }}</p>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@
       <div class="sale_sec mySwiper">
 
         <div class="top_slide">
-          <h2>on sale <span>prodct</span></h2>
+          <h2>{{ __('on sale') }} <span> {{ __('prodcts') }}</span></h2>
         </div>
 
         <div id="swiper_items_sale" class="products swiper-wrapper">
@@ -158,7 +158,13 @@
   <section class="slide slide_product">
     <div class="container">
       <div class="top_slide">
-        <h2>Computer & Desktop <span>prodcts</span></h2>
+        @if (LaravelLocalization::getCurrentLocale() == 'en')
+        <h2>{{ __('Computer & Desktop') }} <span>{{ __('prodcts') }}</span></h2>
+        @else
+        <h2> <span>{{ __('prodcts') }} </span>{{ __('Computer & Desktop') }} </h2>
+
+        @endif
+
       </div>
       <div class="slide_with_img">
 
@@ -188,8 +194,12 @@
   <section class="slide slide_product">
     <div class="container">
       <div class="top_slide">
-        <h2>Computer & Desktop <span>prodcts</span></h2>
-      </div>
+        @if (LaravelLocalization::getCurrentLocale() == 'en')
+        <h2>{{ __('Computer & Desktop') }} <span>{{ __('prodcts') }}</span></h2>
+        @else
+        <h2> <span>{{ __('prodcts') }} </span>{{ __('Computer & Desktop') }} </h2>
+
+        @endif      </div>
       <div class="slide_with_img">
 
 

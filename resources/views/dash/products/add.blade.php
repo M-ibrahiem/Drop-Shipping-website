@@ -1,21 +1,23 @@
 @extends('custom_layouts.dash.app')
 
-@section('title', 'Add Category')
+@section('title', 'Add Products')
 
 @section('content')
     <div class="col-xl-12">
         <section class="hk-sec-wrapper">
-            <h5 class="hk-sec-title">Add New Category</h5>
-            <p class="mb-25">Fill the form below to add a new category</p>
+            <h5 class="hk-sec-title">Add New Products</h5>
+            <p class="mb-25">Fill the form below to add a new Products</p>
             <div class="row">
                 <div class="col-sm">
-                    <form action="{{ route('dashboard.categories.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <div class="form-group">
                                 <label for="title_{{ $localeCode }}">Title ({{ strtoupper($localeCode) }})</label>
-                                <input type="text" class="form-control" id="title_{{ $localeCode }}"name="{{ $localeCode }}[title]" value="{{ old("{$localeCode}.title") }}">
+                                <input type="text" class="form-control"
+                                    id="title_{{ $localeCode }}"name="{{ $localeCode }}[title]"
+                                    value="{{ old("{$localeCode}.title") }}">
                                 @error("{$localeCode}.title")
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -40,15 +42,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="parent">Parent Category</label>
-                            <select class="form-control" id="parent" name="parent">
+                            <label for="parent">Category ID</label>
+                            <select class="form-control" id="parent" name="category_id">
                                 <option value="">Main Category</option>
-                                @foreach ($categories as $cat)
-                                    <option value="{{ $cat->id }}" {{ old('parent') == $cat->id ? 'selected' : '' }}>
-                                        {{ $cat->title }}</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
                             </select>
-                            @error('parent')
+                            @error('category_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

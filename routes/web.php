@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Dash\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -27,6 +29,10 @@ Route::group(
             return view('front.index');
         })->name('main');
 
+        Route::get('products', function () {
+            return view('front.all_products');
+        })->name('products');
+
 
         Route::middleware(['auth', 'verified', 'dashaccess'])->as('dashboard.')->prefix('dashboard')->group(function () {
             Route::get('/', function () {
@@ -35,14 +41,11 @@ Route::group(
 
             Route::resources([
                 'users' => UserController::class,
-                // 'categories' => CategoryController::class,
+                'categories' => CategoryController::class,
+                'products' => ProductController::class,
 
             ]);
         });
-        // Route::get('/dashboard', function () {
-        //     return view('dashboard');
-        // })->middleware(['auth', 'verified', 'dashaccess'])->name('dashboard');
-
         Route::middleware('auth')->group(function () {
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

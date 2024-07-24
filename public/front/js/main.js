@@ -34,9 +34,9 @@ let bigImage = document.getElementById("bigimg");
 /* add itmes in cart */
 
 var all_products_json = {
-    1: {id: 1, name: "Product 1", img: "img/product1.png", price: 10.00},
-    2: {id: 2, name: "Product 2", img: "img/product2.png", price: 20.00},
-    
+    1: {id: 1, name: "Product 1", img: "/front/img/product1.png", price: 10.00},
+    2: {id: 2, name: "Product 2", img: "/front/img/product2.png", price: 20.00},
+
 };
 
 var items_in_cart = document.querySelector(".items_in_cart");
@@ -44,7 +44,7 @@ var cart_count = document.querySelector(".top_cart span");
 let product_cart = [];
 
 function addToCart(id, btn) {
-    
+
     if (!product_cart.some(product => product.id === id)) {
         product_cart.push(all_products_json[id]);
         btn.classList.add("active");
@@ -55,7 +55,7 @@ function addToCart(id, btn) {
     }
 }
 
-  
+
     let count_item = document.querySelector('.count_item')
     let count_item_cart= document.querySelector('.count_item_cart')
     let price_cart_total= document.querySelector('.price_cart_total')

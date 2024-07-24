@@ -7,22 +7,22 @@ function open_close_filter(){
 }
 
 
-fetch('js/items.json')
-    .then(response =>response.json())
+fetch('/front/js/items.json')
+.then(response =>response.json())
      .then(data =>{
-       
+
        const products_dev =document.getElementById("products_dev")
 
        all_products_json = data
-       
+
               data.forEach(product => {
-               
-               
+
+
                 const old_price_pargrahp = product.old_price ? ` <p class="old_price" >$${product.old_price}</p>` : "";
 
             const percent_disc_div = product.old_price ? ` <span class="sale_present" >%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span> `: "";
             products_dev.innerHTML +=`
-            
+
             <div class="product swiper-slide">
 
 
@@ -32,7 +32,7 @@ fetch('js/items.json')
                 <span><i class="fa-solid fa-share"></i></span>
             </div>
           ${percent_disc_div}
-      
+
            <div class="img_product">
              <img src="${product.img}" alt="">
              <img class="img_hover" src="${product.img_hover}" alt="">
@@ -48,13 +48,13 @@ fetch('js/items.json')
               <div class="price">
                <p><span>$${product.price}</span></p>
                ${old_price_pargrahp}
-               
+
               </div>
-      
+
            </div>  `
-           
+
        });
-         
-       
+
+
 
      })

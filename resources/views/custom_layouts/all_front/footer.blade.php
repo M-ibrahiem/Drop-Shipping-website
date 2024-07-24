@@ -82,6 +82,8 @@
     <script src="{{ asset('front/js/Swiper.js') }}"></script>
     <script src="{{ asset('front/js/main.js') }}"></script>
     <script src="{{ asset('front/js/items_hom.js') }}"></script>
+    <script src="{{ asset('front/js/all_products.js') }}"></script>
+
 
     <script>
 

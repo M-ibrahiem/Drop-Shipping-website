@@ -1,21 +1,27 @@
-fetch('js/items.json')
-    .then(response =>response.json())
-     .then(data =>{
-       const swiper_items_sale = document.getElementById("swiper_items_sale")
+fetch('/front/js/items.json')
+.then((response) => response.json())
+    .then((data) => {
+        const swiper_items_sale = document.getElementById("swiper_items_sale");
 
-       const othre_product_swiper =document.getElementById("othre_product_swiper")
-       
-       const othre_product_swiper2 =document.getElementById("othre_product_swiper2")
+        const othre_product_swiper = document.getElementById(
+            "othre_product_swiper"
+        );
 
-       all_products_json = data
-       
-              data.forEach(product => {
-                if(product.old_price){
+        const othre_product_swiper2 = document.getElementById(
+            "othre_product_swiper2"
+        );
 
-            const percent_disc = Math.floor((product.old_price - product.price) / product.old_price * 100);
+        all_products_json = data;
 
-            swiper_items_sale.innerHTML +=`
-            
+        data.forEach((product) => {
+            if (product.old_price) {
+                const percent_disc = Math.floor(
+                    ((product.old_price - product.price) / product.old_price) *
+                        100
+                );
+
+                swiper_items_sale.innerHTML += `
+
             <div class="product swiper-slide">
 
 
@@ -24,8 +30,8 @@ fetch('js/items.json')
                 <span><i class="fa-solid fa-heart"></i></span>
                 <span><i class="fa-solid fa-share"></i></span>
             </div>
-            <span class="sale_present" >%${percent_disc}</span> 
-      
+            <span class="sale_present" >%${percent_disc}</span>
+
            <div class="img_product">
              <img src="${product.img}" alt="">
              <img class="img_hover" src="${product.img_hover}" alt="">
@@ -42,19 +48,14 @@ fetch('js/items.json')
                <p><span>$${product.price}</span></p>
                <p class="old_price" >$${product.old_price}</p>
               </div>
-      
-           </div>  `
-           }
-       });
-         
-       
 
-               data.forEach(product => {
-       
+           </div>  `;
+            }
+        });
 
+        data.forEach((product) => {
+            othre_product_swiper.innerHTML += `
 
-    othre_product_swiper.innerHTML +=`
-    
     <div class="product swiper-slide">
 
 
@@ -78,29 +79,24 @@ fetch('js/items.json')
       </div>
       <div class="price">
        <p><span>$${product.price}</span></p>
-       
+
       </div>
 
-   </div>  `
-   
-       });
+   </div>  `;
+        });
 
+        data.forEach((product) => {
+            othre_product_swiper2.innerHTML += `
 
-       data.forEach(product => {
-       
-
-
-        othre_product_swiper2.innerHTML +=`
-        
         <div class="product swiper-slide">
-    
-    
+
+
         <div class="icons">
            <span> <i onclik ="addToCart(${product.id}, this)" class="fa-solid fa-cart-plus"></i></span>
             <span><i class="fa-solid fa-heart"></i></span>
             <span><i class="fa-solid fa-share"></i></span>
         </div>
-    
+
        <div class="img_product">
          <img src="${product.img}" alt="">
          <img class="img_hover" src="${product.img_hover}" alt="">
@@ -115,10 +111,9 @@ fetch('js/items.json')
           </div>
           <div class="price">
            <p><span>$${product.price}</span></p>
-           
+
           </div>
-    
-       </div>  `
-       
-           });
-     })
+
+       </div>  `;
+        });
+    });

@@ -7,7 +7,7 @@
     <!-- fil css -->
     <title>Topoco</title>
     <link rel="stylesheet" href="{{ asset('front/./css/styl.css') }}">
-            <link rel="stylesheet" href="{{ asset('front/./css/login_regs.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/./css/login_regs.css') }}">
 
     <!-- font awesom -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -61,8 +61,8 @@
                     <img class="logo_menu" src="{{ asset('front/img/logo-black.png') }}" alt="">
 
 
-                    <li class="active"><a href="index.html">{{ __('HOME') }}</a></li>
-                    <li><a href="all_products.html">{{ __('ALL PRODUCTS') }}</a></li>
+                    <li class="active"><a href="{{ route('main') }}">{{ __('HOME') }}</a></li>
+                    <li><a href="{{ route('products') }}">{{ __('ALL PRODUCTS') }}</a></li>
                     <li><a href="about.html">{{ Lang::get('main.About Us') }}</a></li>
                     <li><a href="contact.html">{{ __('Contact') }}</a></li>
                 </ul>
@@ -76,8 +76,8 @@
                                     {{ __('Log Out') }} <i class="fa-solid fa-user-minus"></i>
                                 </button>
                             </form>
-                            @if (Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin')
-                            {{-- @if (Auth::user()->hasRole(['super_admin', 'admin'])) --}}
+                            {{-- @if (Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin') --}}
+                            @if (Auth::user()->hasRole(['super_admin', 'admin']))
                                 <a href="{{ route('dashboard.main') }}" class="button">Dashboard</a>
                             @endif
                         @else
